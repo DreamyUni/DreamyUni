@@ -7,7 +7,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useFrame, Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Image from "next/image";
-import Navbar from '@/components/ui/Navbar';
+import Navbar from '@/components/ui/NavBar';
 import ClientWrapper from '@/components/ClientWrapper';
 
 const HeroParallax = dynamic(() => import("@/components/ui/hero-parallax").then((mod) => mod.HeroParallax), { ssr: false });
