@@ -4,7 +4,9 @@
   functions = "functions"
 
 [[plugins]]
-  package = "@netlify/plugin-nextjs"
+package = "@netlify/plugin-nextjs"
+  [plugins.inputs]
+  publish = ".next"
 
 [functions]
   directory = "functions"
