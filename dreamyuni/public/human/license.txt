@@ -1,0 +1,11 @@
+Model Information:
+* title:	Human
+* source:	https://sketchfab.com/3d-models/human-a75f10c50fb44a70a1b04bcb49f3d71f
+* author:	Thunk3D scanner (https://sketchfab.com/Diana123456)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Human" (https://sketchfab.com/3d-models/human-a75f10c50fb44a70a1b04bcb49f3d71f) by Thunk3D scanner (https://sketchfab.com/Diana123456) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

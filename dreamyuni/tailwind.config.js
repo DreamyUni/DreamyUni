@@ -11,6 +11,7 @@ module.exports = {
     './components/**/*.{js,jsx}',
     './app/**/*.{js,jsx}',
     './src/**/*.{js,jsx}',
+    "./src/**/*.{ts,tsx}"
   ],
   darkMode: "class",
   theme: {
@@ -96,6 +97,7 @@ module.exports = {
   plugins: [addVariablesForColors, require("tailwindcss-animate")],
 };
 
+// This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
 function addVariablesForColors({ addBase, theme }) {
   let allColors = flattenColorPalette(theme("colors"));
   let newVars = Object.fromEntries(

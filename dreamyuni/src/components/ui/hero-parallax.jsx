@@ -4,12 +4,7 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
-export const HeroParallax = ({
-  products = []
-}) => {
-  const firstRow = products.slice(0, 5);
-  const secondRow = products.slice(5, 10);
-  const thirdRow = products.slice(10, 15);
+export const HeroParallax = () => {
   const ref = React.useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -18,42 +13,53 @@ export const HeroParallax = ({
 
   const springConfig = { stiffness: 300, damping: 30, bounce: 100 };
 
-  const translateX = useSpring(useTransform(scrollYProgress, [0, 1], [0, 1000]), springConfig);
-  const translateXReverse = useSpring(useTransform(scrollYProgress, [0, 1], [0, -1000]), springConfig);
-  const rotateX = useSpring(useTransform(scrollYProgress, [0, 0.2], [15, 0]), springConfig);
-  const opacity = useSpring(useTransform(scrollYProgress, [0, 0.2], [0.2, 1]), springConfig);
-  const rotateZ = useSpring(useTransform(scrollYProgress, [0, 0.2], [20, 0]), springConfig);
-  const translateY = useSpring(useTransform(scrollYProgress, [0, 0.2], [-700, 500]), springConfig);
+  const translateY = useSpring(useTransform(scrollYProgress, [0, 1], [0, -500]), springConfig);
+  const opacity = useSpring(useTransform(scrollYProgress, [0, 0.3], [1, 0]), springConfig);
+  const scale = useSpring(useTransform(scrollYProgress, [0, 0.5], [1, 0.6]), springConfig);
+  const rotate = useSpring(useTransform(scrollYProgress, [0, 1], [0, 10]), springConfig);
+
   return (
-    (<div
-      ref={ref}
-      className="h-[300vh] py-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]">
-      <Header />
+    <div ref={ref} className="h-[300vh] py-40 overflow-hidden antialiased relative flex flex-col self-auto">
       <motion.div
         style={{
-          rotateX,
-          rotateZ,
           translateY,
           opacity,
+          scale,
+          rotateZ: rotate,
         }}
-        className="">
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20 mb-20">
-          {firstRow.map((product) => (
-            <ProductCard product={product} translate={translateX} key={product.title} />
-          ))}
-        </motion.div>
-        <motion.div className="flex flex-row  mb-20 space-x-20 ">
-          {secondRow.map((product) => (
-            <ProductCard product={product} translate={translateXReverse} key={product.title} />
-          ))}
-        </motion.div>
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20">
-          {thirdRow.map((product) => (
-            <ProductCard product={product} translate={translateX} key={product.title} />
-          ))}
+        className="sticky top-0 flex flex-col items-center"
+      >
+        <motion.h1 
+          className="text-4xl md:text-7xl font-bold text-center mb-8"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          Unlock Your Dream University
+        </motion.h1>
+        <motion.p 
+          className="text-xl md:text-2xl text-center mb-12 max-w-2xl"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          Explore opportunities, boost your extracurriculars, and map your path to success.
+        </motion.p>
+        <motion.div 
+          className="relative w-full max-w-5xl aspect-[16/10]"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.6 }}
+        >
+          <Image
+            src="/images/jetson.jpg"
+            alt="DreamyUni Platform"
+            layout="fill"
+            objectFit="contain"
+          />
         </motion.div>
       </motion.div>
-    </div>)
+    </div>
   );
 };
 
@@ -73,34 +79,35 @@ export const Header = () => {
   );
 };
 
-export const ProductCard = ({
-  product,
-  translate
-}) => {
+export const ProductCard = ({ product, translate }) => {
   return (
-    (<motion.div
+    <motion.div
       style={{
         x: translate,
       }}
       whileHover={{
         y: -20,
+        scale: 1.05,
+        transition: { duration: 0.3 }
       }}
       key={product.title}
-      className="group/product h-96 w-[30rem] relative flex-shrink-0">
-      <Link href={product.link} className="block group-hover/product:shadow-2xl ">
-        <Image
-          src={product.thumbnail}
-          height="600"
-          width="600"
-          className="object-cover object-left-top absolute h-full w-full inset-0"
-          alt={product.title} />
+      className="group/product h-96 w-[30rem] relative flex-shrink-0 cursor-pointer"
+    >
+      <Link href={product.link} passHref legacyBehavior>
+        <a className="block group-hover/product:shadow-2xl">
+          <Image
+            src={product.thumbnail}
+            height="600"
+            width="600"
+            className="object-cover object-left-top absolute h-full w-full inset-0"
+            alt={product.title}
+          />
+          <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none transition-opacity duration-300"></div>
+          <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white transform translate-y-4 group-hover/product:translate-y-0 transition-all duration-300">
+            {product.title}
+          </h2>
+        </a>
       </Link>
-      <div
-        className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
-      <h2
-        className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
-        {product.title}
-      </h2>
-    </motion.div>)
+    </motion.div>
   );
 };
