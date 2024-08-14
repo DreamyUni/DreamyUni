@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && cd functions && npm install",
     "start": "next start",
     "lint": "next lint"
   },
@@ -19,12 +19,15 @@
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
     "firebase": "^10.12.5",
+    "firebase-admin": "^12.3.1",
+    "firebase-functions": "^5.0.1",
     "framer-motion": "^11.3.24",
     "next": "^14.2.5",
     "openai": "^4.55.7",
     "react": "^18",
     "react-dom": "^18",
     "react-dropzone": "^14.2.3",
+    "sharp": "^0.33.4",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.167.1"
