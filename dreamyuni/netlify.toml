@@ -8,4 +8,6 @@
 
 [functions]
   directory = "functions"
-  excluded_patterns = [".eslintrc.js", "*.json", "*.md"]
+
+[functions.excluded_patterns]
+  files = [".eslintrc.js", "*.json", "*.md"]
