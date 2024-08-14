@@ -8,4 +8,4 @@
 
 [functions]
   directory = "functions"
-  included_files = ["!.eslintrc.js"]
+  included_files = ["!.eslintrc.js", "!.eslintrc.json", "!package.json", "!*.md"]
