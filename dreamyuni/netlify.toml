@@ -1,11 +1,10 @@
 [build]
-  base = "dreamyuni"
   command = "npm run build"
-  publish = ".next"
+  publish = ".next/standalone"
   functions = "functions"
 
 [[plugins]]
-  package = "@netlify/plugin-functions-install-core"
+  package = "@netlify/plugin-nextjs"
+
 [functions]
   directory = "functions"
-  included_files = ["!.*", "!*.json", "!*.md"]
