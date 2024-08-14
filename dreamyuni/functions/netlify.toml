@@ -1,7 +1,0 @@
-[functions]
-  node_bundler = "esbuild"
-
-[build]
-  command = "npm run build"
-  publish = ".next"
-  functions = "functions"

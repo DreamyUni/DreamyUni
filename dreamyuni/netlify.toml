@@ -1,11 +1,11 @@
 [build]
+  base = "dreamyuni"
   command = "npm run build"
   publish = ".next"
   functions = "functions"
 
 [[plugins]]
   package = "@netlify/plugin-functions-install-core"
-
 [functions]
   directory = "functions"
   included_files = ["!.*", "!*.json", "!*.md"]
