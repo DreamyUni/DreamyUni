@@ -1,6 +1,11 @@
 [build]
   command = "npm run build"
   publish = ".next"
+  functions = "functions"
 
 [[plugins]]
   package = "@netlify/plugin-functions-install-core"
+
+[functions]
+  directory = "functions"
+  excluded_patterns = [".eslintrc.js", "*.json", "*.md"]
